@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="colorPicker.css" rel="stylesheet">
+</head>
+
+<body class="color-picker">
+    <div class="display">
+        <div class="previous"></div>
+        <div class="current"></div>
+    </div>
+    <div class="palett" ondragstart="return false;">
+        <div class="bg bg1" ondragstart="return false;"></div>
+        <div class="bg bg2" ondragstart="return false;"></div>
+        <div class="bg bg3" ondragstart="return false;"></div>
+        <div class="pointer"></div>
+    </div>
+    <div class="hue" ondragstart="return false;">
+        <div class="bg" ondragstart="return false;"></div>
+        <div class="pointer" ondragstart="return false;"></div>
+    </div>
+    <div class="color-value">
+        <div class="type">
+            <div class="dropdown"></div>
+        </div>
+        <div class="value">
+            <input type="text">
+        </div>
+    </div>
+
+    <script type="module" src="./colorPicker.js"></script>
+</body>
+
+</html>

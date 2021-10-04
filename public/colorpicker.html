@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            overflow: visible;
+            margin: 0;
+            padding: 0;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: center;
+        }
+
+        .display {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 40vh;
+            height: 5vh;
+
+            margin-bottom: 3vh;
+        }
+
+        .display .previous {
+            grid-column: 1;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 1vh 0 0 1vh;
+            background: #ff0000;
+
+            cursor: pointer;
+        }
+
+        .display .current {
+            grid-column: 2;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 0 1vh 1vh 0;
+            background: #949494;
+        }
+
+        .palett {
+            position: relative;
+            width: 40vh;
+            height: 40vh;
+
+            margin-bottom: 3vh;
+
+            cursor: pointer;
+        }
+
+        .palett .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 6px;
+        }
+
+        .palett .bg1 {
+            background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+            border-radius: 6px 6px 10px 10px;
+        }
+
+        .palett .bg2 {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+            border-radius: 6px;
+        }
+
+        .palett .bg3 {
+            background-color: #ff0000;
+            border-radius: 6px 6px 10px 10px;
+
+            z-index: -1;
+        }
+
+        .palett .pointer {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+
+            width: 2vh;
+            height: 2vh;
+
+            border: .3vh solid #ffffff;
+            border-radius: 50%;
+        }
+
+        .hue {
+            position: relative;
+            margin-bottom: 2vh;
+            height: 1.5vh;
+            width: 40vh;
+
+            cursor: pointer;
+        }
+
+        .hue .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
+            border-radius: 6px;
+        }
+
+        .hue .pointer {
+            position: absolute;
+            top: -0.5vh;
+            width: 1.25vh;
+            height: 1.25vh;
+
+            border: .5vh solid #c9c9c9;
+            border-radius: 5vh;
+        }
+
+        .swatches {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 40vh;
+        }
+
+        .swatches .color {
+            position: relative;
+            width: 4vh;
+            height: 4vh;
+
+            border-radius: 1vh;
+            margin: 0.8vh;
+
+            cursor: pointer;
+        }
+
+        .color-value {
+            display: grid;
+            grid-template-columns: 10vh 30vh;
+            margin-bottom: 3vh;
+            width: 40vh;
+            height: 4vh;
+
+        }
+
+        .color-value .type {
+            grid-column: 1;
+        }
+
+        .color-value .value input {
+            grid-column: 2;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #949494;
+            color: #949494;
+            background-color: #00000000;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body class="color-picker">
+    <div class="display">
+        <div class="previous"></div>
+        <div class="current"></div>
+    </div>
+    <div class="palett" ondragstart="return false;">
+        <div class="bg bg1" ondragstart="return false;"></div>
+        <div class="bg bg2" ondragstart="return false;"></div>
+        <div class="bg bg3" ondragstart="return false;"></div>
+        <div class="pointer"></div>
+    </div>
+    <div class="hue" ondragstart="return false;">
+        <div class="bg" ondragstart="return false;"></div>
+        <div class="pointer" ondragstart="return false;"></div>
+    </div>
+    <div class="color-value">
+        <div class="type">
+            <div class="dropdown"></div>
+        </div>
+        <div class="value">
+            <input type="text">
+        </div>
+    </div>
+    <!-- <div class="swatches">
+        <div style="background-color: rgb(0, 140, 255);" class="color"></div>
+        <div style="background-color: rgb(132, 0, 255);" class="color"></div>
+        <div style="background-color: rgb(255, 102, 0);" class="color"></div>
+        <div style="background-color: rgb(201, 80, 0);" class="color"></div>
+        <div style="background-color: rgb(182, 182, 182);" class="color"></div>
+        <div style="background-color: rgb(255, 255, 255);" class="color"></div>
+        <div style="background-color: rgb(46, 46, 46);" class="color"></div>
+        <div style="background-color: rgb(255, 0, 0);" class="color"></div>
+        <div style="background-color: rgb(21, 255, 0);" class="color"></div>
+        <div style="background-color: rgb(86, 168, 19);" class="color"></div>
+        <div style="background-color: rgb(255, 251, 0);" class="color"></div>
+        <div style="background-color: rgb(196, 127, 0);" class="color"></div>
+        <div style="background-color: rgb(247, 0, 255);" class="color"></div>
+        <div style="background-color: hsl(293, 24%, 41%);" class="color"></div>
+    </div> -->
+
+    <script>
+        var HUE = 0;
+        var SATURATION = 24;
+        var LIGHT = 41;
+        let dragging = "";
+        // -----------------------------------------------------------
+
+        // -----------------------------------------------------------
+        const hue = document.getElementsByClassName("hue").item(0);
+        const huePointer = document.getElementsByClassName("pointer").item(1);
+        // -----------------------------------------------------------
+
+        // -----------------------------------------------------------
+        const palett = document.getElementsByClassName("palett").item(0);
+        const palettPointer = document.getElementsByClassName("pointer").item(0);
+        //const c1 = document.querySelector(".c1");
+        // -----------------------------------------------------------
+
+        // -----------------------------------------------------------
+        updateColors();
+
+        window.addEventListener("mousemove", e => {
+            if (dragging != "") {
+                calculateH(e);
+                calculateSL(e);
+                updateColors();
+            }
+        });
+
+        document.addEventListener("mouseup", e => {
+            dragging = "";
+        });
+
+        function updateColors() {
+            document.getElementsByClassName("bg3").item(0).style.background = HSLToHex(HUE, 100, 50);
+            document.getElementsByClassName("current").item(0).style.background = HSLToHex(HUE, SATURATION, LIGHT);
+            huePointer.style.background = HSLToHex(HUE, 100, 50);
+            palettPointer.style.background = HSLToHex(HUE, SATURATION, LIGHT);
+        }
+
+        function HSLToHex(h, s, l) {
+            s /= 100;
+            l /= 100;
+
+            let c = (1 - Math.abs(2 * l - 1)) * s,
+                x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+                m = l - c / 2,
+                r = 0,
+                g = 0,
+                b = 0;
+
+            if (0 <= h && h < 60) {
+                r = c; g = x; b = 0;
+            } else if (60 <= h && h < 120) {
+                r = x; g = c; b = 0;
+            } else if (120 <= h && h < 180) {
+                r = 0; g = c; b = x;
+            } else if (180 <= h && h < 240) {
+                r = 0; g = x; b = c;
+            } else if (240 <= h && h < 300) {
+                r = x; g = 0; b = c;
+            } else if (300 <= h && h < 360) {
+                r = c; g = 0; b = x;
+            }
+            // Having obtained RGB, convert channels to hex
+            r = Math.round((r + m) * 255).toString(16);
+            g = Math.round((g + m) * 255).toString(16);
+            b = Math.round((b + m) * 255).toString(16);
+
+            // Prepend 0s, if necessary
+            if (r.length == 1)
+                r = "0" + r;
+            if (g.length == 1)
+                g = "0" + g;
+            if (b.length == 1)
+                b = "0" + b;
+
+            return "#" + r + g + b;
+        }
+        // -----------------------------------------------------------
+
+        // -----------------------------------------------------------
+        hue.addEventListener("mousedown", e => {
+            dragging = "hue";
+            calculateH(e);
+            updateColors();
+        });
+
+        function calculateH(e) {
+            let X;
+            if (dragging == "hue"
+                && (e.clientX > window.scrollX + hue.getBoundingClientRect().left &&
+                    e.clientX < window.scrollX + hue.getBoundingClientRect().left + palett.offsetWidth)) {
+                let X;
+                X = e.clientX - (window.scrollX + hue.getBoundingClientRect().left) - huePointer.offsetWidth / 2;
+                huePointer.style.left = `${X}px`;
+            }
+            X = (((window.scrollX + huePointer.getBoundingClientRect().left) - (window.scrollX + hue.getBoundingClientRect().left) + huePointer.offsetWidth / 2) / hue.offsetWidth) * 360;
+            HUE = X;
+        }
+        // -----------------------------------------------------------
+
+        // -----------------------------------------------------------
+        palett.addEventListener("mousedown", e => {
+            dragging = "palett";
+            calculateSL(e);
+            updateColors();
+        });
+
+        function calculateSL(e) {
+            let X, Y;
+            if (dragging == "palett") {
+                if (e.clientX > window.scrollX + palett.getBoundingClientRect().left &&
+                    e.clientX < window.scrollX + palett.getBoundingClientRect().left + palett.offsetWidth) {
+                    let X;
+                    X = e.clientX - (window.scrollX + palett.getBoundingClientRect().left) - palettPointer.offsetWidth / 2;
+                    palettPointer.style.left = `${X}px`;
+                } else if (e.clientX > window.scrollX + palett.getBoundingClientRect().left) {
+                    let X;
+                    X = palett.offsetWidth - palettPointer.offsetWidth / 2;
+                    palettPointer.style.left = `${X}px`;
+                } else if (e.clientX < window.scrollX + palett.getBoundingClientRect().left + palett.offsetWidth) {
+                    let X;
+                    X = - palettPointer.offsetWidth / 2;
+                    palettPointer.style.left = `${X}px`;
+                }
+
+                if (e.clientY > window.scrollY + palett.getBoundingClientRect().top &&
+                    e.clientY < window.scrollY + palett.getBoundingClientRect().top + palett.offsetHeight) {
+                    let Y;
+                    Y = e.clientY - (window.scrollY + palett.getBoundingClientRect().top) - palettPointer.offsetHeight / 2;
+                    palettPointer.style.top = `${Y}px`;
+                } else if (e.clientY > window.scrollY + palett.getBoundingClientRect().top) {
+                    let Y;
+                    Y = palett.offsetHeight - palettPointer.offsetHeight / 2;
+                    palettPointer.style.top = `${Y}px`;
+                } else if (e.clientY < window.scrollY + palett.getBoundingClientRect().top + palett.offsetHeight) {
+                    let Y;
+                    Y = - palettPointer.offsetHeight / 2;
+                    palettPointer.style.top = `${Y}px`;
+                }
+
+                [X, Y] = [
+                    (((window.scrollX + palettPointer.getBoundingClientRect().left) - (window.scrollX + palett.getBoundingClientRect().left) + palettPointer.offsetWidth / 2) / palett.offsetWidth) * 100,
+                    (((window.scrollY + palettPointer.getBoundingClientRect().top) - (window.scrollY + palett.getBoundingClientRect().top) + palettPointer.offsetHeight / 2) / palett.offsetHeight) * 100
+                ];
+                SATURATION = X;
+                LIGHT = ((100 - Y) / 2) * ((100 - X) / 100 + 1);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+// body {
+// }
+$height: 500;
+
+.color-picker {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    margin: 10px;
+    height: 500px;
+    padding: 0;
+
+    .display {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: calc(#{$height}px * 0.4);
+        height: calc(#{$height}px * 0.05);
+        margin-bottom: calc(#{$height}px * 0.03);
+
+        .previous {
+            grid-column: 1;
+            width: 100%;
+            height: 100%;
+
+            border-radius: calc(#{$height}px * 0.01) 0 0 calc(#{$height}px * 0.01);
+            background: #ff0000;
+
+            cursor: pointer;
+        }
+
+        .current {
+            grid-column: 2;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 0 calc(#{$height}px * 0.01) calc(#{$height}px * 0.01) 0;
+            background: #949494;
+        }
+    }
+
+    .palett {
+        position: relative;
+        width: calc(#{$height}px * 0.4);
+        height: calc(#{$height}px * 0.4);
+
+        margin-bottom: calc(#{$height}px * 0.03);
+
+        cursor: pointer;
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 6px;
+        }
+        .bg1 {
+            background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+            border-radius: 6px 6px 10px 10px;
+        }
+        .bg2 {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+            border-radius: 6px;
+        }
+        .bg3 {
+            background-color: #ff0000;
+            border-radius: 6px 6px 10px 10px;
+
+            z-index: -1;
+        }
+
+        .pointer {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+
+            width: calc(#{$height}px * 0.02);
+            height: calc(#{$height}px * 0.02);
+
+            border: calc(#{$height}px * 0.003) solid #ffffff;
+            border-radius: 50%;
+        }
+    }
+
+    .hue {
+        position: relative;
+        margin-bottom: calc(#{$height}px * 0.02);
+        height: calc(#{$height}px * 0.015);
+        width: calc(#{$height}px * 0.4);
+
+        cursor: pointer;
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
+            border-radius: 6px;
+        }
+
+        .pointer {
+            position: absolute;
+            top: calc(#{$height}px * -0.006);
+
+            width: calc(#{$height}px * 0.02);
+            height: calc(#{$height}px * 0.02);
+
+            border: calc(#{$height}px * 0.003) solid #ffffff;
+            border-radius: 50%;
+        }
+    }
+
+    .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: calc(#{$height}px * 0.4);
+
+        .color {
+            position: relative;
+            width: calc(#{$height}px * 0.04);
+            height: calc(#{$height}px * 0.04);
+
+            border-radius: calc(#{$height}px * 0.01);
+            margin: calc(#{$height}px * 0.008);
+
+            cursor: pointer;
+        }
+    }
+
+    .color-value {
+        display: grid;
+        grid-template-columns: calc(#{$height}px * 0.1) calc(#{$height}px * 0.3);
+        margin-bottom: calc(#{$height}px * 0.03);
+        width: calc(#{$height}px * 0.4);
+        height: calc(#{$height}px * 0.04);
+
+        .type {
+            grid-column: 1;
+        }
+
+        .value input {
+            grid-column: 2;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #949494;
+            color: #949494;
+            background-color: #00000000;
+            font-family: "Courier New", Courier, monospace;
+        }
+    }
+}
+.color-picker::-webkit-scrollbar {
+    display: none;
+}

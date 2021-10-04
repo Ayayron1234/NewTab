@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>New Tab</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="components/ColorPicker/colorPicker.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css" /> -->
+    <!-- https://github.com/Simonwep/pickr -->
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar">
+            <div class="tab active">general</div>
+            <div class="tab">school</div>
+            <div class="tab">programming</div>
+            <div class="tab">+</div>
+        </div>
+    </div>
+    <div class="main-section">
+        <div class="toolbar">
+            <div class="left-section"></div>
+            <div class="center-section">
+                <!-- <div class="color-picker"></div>
+                <input type="color" name="" id=""> -->
+                <div class="toolbar-item font-align">
+                    <img class="font-align-button left active" src="igames/icons/justify/justify-left.svg"
+                        alt="left justified" onclick="formatDoc('justifycenter')">
+                    <img class="font-align-button center" src="igames/icons/justify/justify-center.svg"
+                        alt="center justified" onclick="formatDoc('justifyright')">
+                    <img class="font-align-button right" src="igames/icons/justify/justify-right.svg"
+                        alt="right justified" onclick="formatDoc('justifyleft')">
+                </div>
+                <div class="toolbar-item font-size">
+                    <input type="number" id="fontSize">
+                </div>
+                <div class="toolbar-item font-family">
+                </div>
+                <div class="toolbar-item strikethrough">
+                    <img class="active" src="igames/icons/strikethrough/strikethrough.svg" alt="cross out"
+                        onclick="formatDoc('strikeThrough')">
+                </div>
+                <div class="toolbar-item font-color" onclick="this.selectedIndex=0"></div>
+            </div>
+            <div class="right-section">
+                <!-- <iframe id="colorPickerIframe" src="./components/ColorPicker/colorPicker.html" frameborder="0"
+                    height="500px"></iframe> -->
+                <div class="color-picker">
+                    <div class="display">
+                        <div class="previous"></div>
+                        <div class="current"></div>
+                    </div>
+                    <div class="palett" ondragstart="return false;">
+                        <div class="bg bg1" ondragstart="return false;"></div>
+                        <div class="bg bg2" ondragstart="return false;"></div>
+                        <div class="bg bg3" ondragstart="return false;"></div>
+                        <div class="pointer"></div>
+                    </div>
+                    <div class="hue" ondragstart="return false;">
+                        <div class="bg" ondragstart="return false;"></div>
+                        <div class="pointer" ondragstart="return false;"></div>
+                    </div>
+                    <div class="color-value">
+                        <div class="type">
+                            <div class="dropdown"></div>
+                        </div>
+                        <div class="value">
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <script type="module" src="./components/ColorPicker/colorPicker.js"></script>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content" contenteditable="true" id="general">
+            </div>
+            <div class="content" contenteditable="true" id="school">
+            </div>
+            <div class="content" contenteditable="true" id="programming">
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src='main.js'></script>
+    <script type="module" src='js/upload.js'></script>
+    <script type="module" src='js/align.js'></script>
+    <script type="module" src="js/toolbar.js"></script>
+    <script src='js/formatDoc.js'></script>
+    <!-- <script type="module" src='js/colorPicker.js'></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
+</body>
+
+</html>

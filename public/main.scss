@@ -1,0 +1,199 @@
+html,
+body {
+    min-height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 8vh 3vh 1fr;
+    overflow: hidden;
+
+    background-color: #222222;
+
+    font-family: Consolas, "Courier New", monospace;
+    color: #d4d4d4;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/*
+
+a szöveg bal oldalán amikor rákattintok a szövegre kék lesz a border. ez legyen a jovoben csak ugy kék, hogy egyben scrollbarként is funkcionáljon. 
+
+*/
+
+.header {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1.4fr 3.6fr;
+
+    .navbar {
+        grid-column: 2;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        height: 3vh;
+        width: 65%;
+
+        z-index: 2;
+
+        .tab {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-right: 2px;
+            padding: 0px 15px;
+
+            border: 2px solid #464646;
+            border-radius: 10px 10px 0px 0px;
+            color: #949494;
+
+            cursor: pointer;
+        }
+        .tab:hover {
+            color: #0079ca;
+        }
+        .tab.active {
+            border-bottom: 2px solid #222222;
+            color: #d4d4d4;
+
+            text-decoration: underline;
+        }
+    }
+}
+
+.main-section {
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1.2fr 3.6fr;
+
+    .toolbar {
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr 60px fit-content(20px);
+
+        .left-section {
+            width: 200px;
+            grid-column: 1;
+            display: none;
+        }
+        .right-section {
+            width: 0px;
+            grid-column: 3;
+            display: flex;
+            padding: 30px;
+            padding-right: 0px;
+            padding-left: 30px;
+
+            overflow-x: hidden;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+
+            // .color-picker {
+            //     align-items: center;
+            //     width: 0px;
+
+            //     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+            // }
+        }
+
+        .center-section {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: top;
+            width: 100%;
+
+            border: 1px solid #333333;
+
+            .toolbar-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                input {
+                    width: 100%;
+
+                    outline: none;
+                    border: none;
+                    background: none;
+
+                    font-family: Consolas, "Courier New", monospace;
+                    font-size: 16px;
+                    color: #d4d4d4;
+                }
+            }
+            img {
+                display: none;
+
+                cursor: pointer;
+            }
+            img.active {
+                display: block;
+            }
+
+            .font-color {
+                width: 30px;
+                height: 30px;
+
+                background-color: #d4d4d4;
+                border-radius: 6px;
+
+                cursor: pointer;
+            }
+        }
+    }
+    .toolbar.shift-left {
+        grid-template-columns: 1fr 60px fit-content(20px);
+
+        .right-section {
+            display: flex;
+            width: 220px;
+            padding: 10px;
+            padding-top: 30px;
+
+            iframe {
+                width: 220px;
+            }
+
+            // transform: scaleX(100%);
+            // transform-origin: center left;
+        }
+    }
+
+    .container {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: 1fr 6vw;
+
+        .content {
+            grid-column: 1;
+            display: none;
+            width: 90%;
+            height: 78vh;
+            padding: 25px;
+
+            outline: none;
+            border-top: 2px solid #464646;
+            border-left: 2px solid #464646;
+            border-radius: 10px 0px;
+
+            user-select: none;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+        .content:focus {
+            border-top: 2px solid #0268ac;
+            border-left: 2px solid #0268ac;
+        }
+    }
+}
